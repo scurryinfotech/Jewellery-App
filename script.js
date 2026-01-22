@@ -71,6 +71,8 @@
 
         // Cart Management
         let cart = [];
+        let currentZoomProduct = null;
+        let currentZoomImageIndex = 0;
 
         // Render Products
         function renderProducts() {
@@ -83,7 +85,8 @@
                                  alt="${product.name}" 
                                  class="product-image" 
                                  style="display: ${imgIndex === 0 ? 'block' : 'none'};"
-                                 data-img-index="${imgIndex}">
+                                 data-img-index="${imgIndex}"
+                                 onclick="openZoom(${index}, ${imgIndex})">
                         `).join('')}
                         <button class="image-nav prev" onclick="changeProductImage(${index}, -1, event)">‹</button>
                         <button class="image-nav next" onclick="changeProductImage(${index}, 1, event)">›</button>
@@ -136,6 +139,31 @@
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentProductImages[productIndex]);
             });
+        }
+
+        // Zoom Functions
+        function openZoom(productIndex, imageIndex) {
+            currentZoomProduct = productIndex;
+            currentZoomImageIndex = imageIndex;
+            const product = products[productIndex];
+            const zoomImage = document.getElementById('zoomImage');
+            zoomImage.src = product.images[imageIndex];
+            zoomImage.alt = product.name;
+            document.getElementById('zoomModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeZoom() {
+            document.getElementById('zoomModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function changeZoomImage(direction) {
+            const product = products[currentZoomProduct];
+            const totalImages = product.images.length;
+            currentZoomImageIndex = (currentZoomImageIndex + direction + totalImages) % totalImages;
+            const zoomImage = document.getElementById('zoomImage');
+            zoomImage.src = product.images[currentZoomImageIndex];
         }
 
         // Add to Cart
@@ -287,6 +315,20 @@
 
         // Initialize
         renderProducts();
+
+        // Close zoom modal when clicking outside
+        document.getElementById('zoomModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeZoom();
+            }
+        });
+
+        // Close zoom modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('zoomModal').classList.contains('active')) {
+                closeZoom();
+            }
+        });
 
         // Mobile Menu Toggle
         function toggleMenu() {

@@ -6,7 +6,7 @@
     <meta name="description" content="Vinod Jewels - Exquisite handcrafted jewelry including diamond rings, gold necklaces, ruby pendants, and precious gemstones">
     <meta name="theme-color" content="#1a1a2e">
     <title>Vinod Jewels - Exquisite Handcrafted Jewelry</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
@@ -105,6 +105,16 @@
         </div>
     </div>
 
+    <!-- Zoom Modal -->
+    <div class="zoom-modal" id="zoomModal">
+        <div class="zoom-content">
+            <span class="close-zoom" onclick="closeZoom()">×</span>
+            <img id="zoomImage" src="" alt="">
+            <button class="zoom-nav prev" onclick="changeZoomImage(-1)">‹</button>
+            <button class="zoom-nav next" onclick="changeZoomImage(1)">›</button>
+        </div>
+    </div>
+
     <!-- Success Message -->
     <div class="success-message" id="successMessage">
         <div class="success-icon">✓</div>
@@ -114,8 +124,8 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Lumière Jewels. Crafted with passion and precision.</p>
+        <p>&copy; 2026 Vinod Jewels. Crafted with passion and precision.</p>
     </footer>
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

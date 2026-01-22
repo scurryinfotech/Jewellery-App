@@ -258,7 +258,7 @@
         /* Products Section */
         .products-section {
             max-width: 1400px;
-            margin: 4rem auto;
+            margin: 1rem auto;
             padding: 0 2rem;
         }
 
@@ -1075,4 +1075,109 @@
                 page-break-inside: avoid;
             }
         }
+
+/* Zoom Modal Styles */
+.zoom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.zoom-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.zoom-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#zoomImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.close-zoom {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 4001;
+    transition: color 0.3s ease;
+}
+
+.close-zoom:hover {
+    color: var(--primary);
+}
+
+.zoom-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 4001;
+}
+
+.zoom-nav:hover {
+    background: var(--primary);
+    color: var(--secondary);
+}
+
+.zoom-nav.prev {
+    left: -70px;
+}
+
+.zoom-nav.next {
+    right: -70px;
+}
+
+@media (max-width: 768px) {
+    .close-zoom {
+        top: 10px;
+        right: 10px;
+        font-size: 2rem;
+    }
+
+    .zoom-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .zoom-nav.prev {
+        left: 10px;
+    }
+
+    .zoom-nav.next {
+        right: 10px;
+    }
+}
     
