@@ -285,7 +285,6 @@
         function nextSlide() {
             showSlide(currentSlide + 1);
         }
-
         // Auto-advance slider
         setInterval(nextSlide, 5000);
 
